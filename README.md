@@ -30,14 +30,30 @@
 
 ## 快速开始
 
+需要 Node.js 22 或更新版本。
+
 ```bash
 git clone https://github.com/Zippland/perler-beads.git
 cd perler-beads
-npm install
+npm ci
 npm run dev
 ```
 
 浏览器打开 `http://localhost:3000`。
+
+### 开发检查
+
+```bash
+npm run lint
+npm run build
+npx playwright install chromium
+npm run test:e2e
+npm audit
+```
+
+端到端测试会在本机 3100 端口启动生产服务器，检查图片转换、编辑撤销、PNG/CSV 导出与重新导入、专心拼豆模式、移动端布局、图片优化和离线使用。请先完成生产构建；开发模式会禁用 Service Worker。若要测试已经启动的服务器，可以设置 `PLAYWRIGHT_BASE_URL`。
+
+PWA 由 Serwist 生成 `/sw.js`。`package.json` 中的定向依赖覆盖为 Next.js、Serwist 和 ESLint 工具链提供安全更新版本，同时保留旧版消费者所需的接口。升级这些直接依赖时，应重新检查是否仍需要对应覆盖。
 
 ## 技术栈
 
